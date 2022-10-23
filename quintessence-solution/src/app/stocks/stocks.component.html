@@ -1,0 +1,21 @@
+<table *ngIf="stocks$ | async as stocks">
+    <tr>
+        <th>ID</th>
+        <th>STOCK</th>
+        <th>INDUSTRY</th>
+        <th>SECTOR</th>
+        <th>CURENCY CODE</th>
+    </tr>
+    <tr *ngFor="let stock of stocks">
+        <td>{{stock.id}}</td>
+        <td>{{stock.stock}}</td>
+        <td>{{stock.industry}}</td>
+        <td>{{stock.sector}}</td>
+        <td>{{stock.currency_code}}</td>
+    </tr>
+</table>
+
+<div class="alert alert-danger"
+     *ngIf="errorMessage$ | async as errorMessage">
+  {{ errorMessage }}
+</div>
