@@ -1,4 +1,4 @@
-<table *ngIf="stocks$ | async as stocks">
+<table border="1" *ngIf="stocks$ | async as stocks">
     <tr>
         <th>ID</th>
         <th>STOCK</th>
@@ -6,7 +6,10 @@
         <th>SECTOR</th>
         <th>CURENCY CODE</th>
     </tr>
-    <tr *ngFor="let stock of stocks">
+    <tr>
+        <input type="text" [(ngModel)]="searchValue" placeholder="Serach any fields" />
+    </tr>
+    <tr *ngFor="let stock of stocks | searchPipe: searchValue">
         <td>{{stock.id}}</td>
         <td>{{stock.stock}}</td>
         <td>{{stock.industry}}</td>

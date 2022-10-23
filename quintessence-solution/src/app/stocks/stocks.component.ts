@@ -11,6 +11,8 @@ export class StocksComponent implements OnInit {
 
   constructor(private stockService: StocksService) { }
 
+  searchValue = '';
+
   private errorMessageSubject = new Subject<string>();
   errorMessage$ = this.errorMessageSubject.asObservable();
 

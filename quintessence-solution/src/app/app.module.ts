@@ -7,17 +7,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { StocksComponent } from './stocks/stocks.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppData } from './app-data';
+import { SearchPipe } from './pipes/search.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StocksComponent
+    StocksComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(AppData, { delay: 1000 })
+    InMemoryWebApiModule.forRoot(AppData, { delay: 1000 }),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
