@@ -34,8 +34,9 @@ export class StocksService {
     this.stockSelectedAction$
   ]).pipe(
     map(([stocks, selectedStockId]) => 
-    stocks.find(stock => stock.stock_id = selectedStockId)),
-    shareReplay(1)
+    stocks.filter(stock => stock.stock_id = selectedStockId)),
+    shareReplay(1),
+    tap(data => console.log('Selcted Value', JSON.stringify(data)))
   );
 
   selectedStockChanged(selectedStockId: number): void {

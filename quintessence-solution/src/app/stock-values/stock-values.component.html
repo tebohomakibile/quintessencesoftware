@@ -1,1 +1,13 @@
-<p>stock-values works!</p>
+<table border="1" *ngIf="selectedStock$ | async as selectedStocks">
+    <tr>
+        <td>Stock ID</td>
+        <td>Date</td>
+        <td>Value</td>
+    </tr>
+
+    <tr *ngFor="let stock of selectedStocks">
+        <td>{{stock.stock_id}}</td>
+        <td>{{stock.date}}</td>
+        <td>{{stock.value}}</td>
+    </tr>
+</table>
