@@ -1,24 +1,34 @@
-<table border="1" *ngIf="stocks$ | async as stocks">
-    <tr>
-        <th [appSort]="stocks" data-order="desc" data-name="id">ID</th>
-        <th [appSort]="stocks" data-order="desc" data-name="stock">STOCK</th>
-        <th [appSort]="stocks" data-order="desc" data-name="industry">INDUSTRY</th>
-        <th [appSort]="stocks" data-order="desc" data-name="sector">SECTOR</th>
-        <th [appSort]="stocks" data-order="desc" data-name="currency_code">CURENCY CODE</th>
-    </tr>
-    <tr>
-        <input type="text" [(ngModel)]="searchValue" placeholder="Serach any fields" />
-    </tr>
-    <tr *ngFor="let stock of stocks | searchPipe: searchValue" 
-        (click)="onSelected(stock.id)">
-        <td>{{stock.id}}</td>
-        <td>{{stock.stock}}</td>
-        <td>{{stock.industry}}</td>
-        <td>{{stock.sector}}</td>
-        <td>{{stock.currency_code}}</td>
-    </tr>
-</table>
+<div class="container mt-3">
+    <table class="table table-striped" *ngIf="stocks$ | async as stocks">
+        <thead class="table-dark">
+            <tr>
+                <th [appSort]="stocks" data-order="desc" data-name="id">Id</th>
+                <th [appSort]="stocks" data-order="desc" data-name="stock">Stock</th>
+                <th [appSort]="stocks" data-order="desc" data-name="industry">Industry</th>
+                <th [appSort]="stocks" data-order="desc" data-name="sector">Sector</th>
+                <th [appSort]="stocks" data-order="desc" data-name="currency_code">Currency Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <div class="mb-3 mt-3 col-12">
+                    <input type="text" class="form-control" [(ngModel)]="searchValue" placeholder="Serach any fields" />
+                </div>
+            </tr>
+            <tr *ngFor="let stock of stocks | searchPipe: searchValue"
+                (click)="onSelected(stock.id)">
+                <td>{{stock.id}}</td>
+                <td>{{stock.stock}}</td>
+                <td>{{stock.industry}}</td>
+                <td>{{stock.sector}}</td>
+                <td>{{stock.currency_code}}</td>
+            </tr>
+        </tbody>
+    </table>
 
-<div class="alert alert-danger" *ngIf="errorMessage$ | async as errorMessage">
-  {{ errorMessage }}
+    <div class="alert alert-danger" *ngIf="errorMessage$ | async as errorMessage">
+        {{ errorMessage }}
+    </div>
 </div>
+
+
