@@ -9,7 +9,8 @@
     <tr>
         <input type="text" [(ngModel)]="searchValue" placeholder="Serach any fields" />
     </tr>
-    <tr *ngFor="let stock of stocks | searchPipe: searchValue">
+    <tr *ngFor="let stock of stocks | searchPipe: searchValue" 
+        (click)="onSelected(stock.id)">
         <td>{{stock.id}}</td>
         <td>{{stock.stock}}</td>
         <td>{{stock.industry}}</td>
@@ -18,7 +19,6 @@
     </tr>
 </table>
 
-<div class="alert alert-danger"
-     *ngIf="errorMessage$ | async as errorMessage">
+<div class="alert alert-danger" *ngIf="errorMessage$ | async as errorMessage">
   {{ errorMessage }}
 </div>

@@ -24,6 +24,10 @@ export class StocksComponent implements OnInit {
     })
   );
 
+  onSelected(stockId: number): void {
+    this.stockService.selectedStockChanged(stockId);
+  }
+
   ngOnInit(): void {
   }
 

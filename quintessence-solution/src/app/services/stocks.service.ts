@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Stocks } from '../Interfaces/Stocks';
 import { StockValues } from '../Interfaces/StockValues';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, map, Observable, shareReplay, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,32 @@ export class StocksService {
 
   stocks$ = this.http.get<Stocks[]>(this.stocksUrl)
     .pipe(
-      tap(data => console.log('Products: ', JSON.stringify(data))),
+      tap(data => console.log('Stocks: ', JSON.stringify(data))),
       catchError(this.handleError)
     );
+
+  stockValues$ = this.http.get<StockValues[]>(this.stockValuesUrl)
+    .pipe(
+      tap(data => console.log('Stock Values', JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+
+  private stockSelectedSubject = new BehaviorSubject<number>(0);
+  stockSelectedAction$ = this.stockSelectedSubject.asObservable();
+
+  selectedStock$ = combineLatest([
+    this.stockValues$,
+    this.stockSelectedAction$
+  ]).pipe(
+    map(([stocks, selectedStockId]) => 
+    stocks.find(stock => stock.stock_id = selectedStockId)),
+    shareReplay(1)
+  );
+
+  selectedStockChanged(selectedStockId: number): void {
+    this.stockSelectedSubject.next(selectedStockId);
+    console.log(this.stockSelectedSubject);
+  }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
     let errorMessage: string;
@@ -30,5 +53,4 @@ export class StocksService {
     console.error(err);
     return throwError(() => errorMessage);
   }
-
 }

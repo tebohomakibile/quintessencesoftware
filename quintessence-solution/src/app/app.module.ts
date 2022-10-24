@@ -9,12 +9,14 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppData } from './app-data';
 import { SearchPipe } from './pipes/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StockValuesComponent } from './stock-values/stock-values.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StocksComponent,
-    SearchPipe
+    SearchPipe,
+    StockValuesComponent
   ],
   imports: [
     BrowserModule,
