@@ -10,13 +10,15 @@ import { AppData } from './app-data';
 import { SearchPipe } from './pipes/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StockValuesComponent } from './stock-values/stock-values.component';
+import { SortDirective } from './directives/sort.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     StocksComponent,
     SearchPipe,
-    StockValuesComponent
+    StockValuesComponent,
+    SortDirective
   ],
   imports: [
     BrowserModule,

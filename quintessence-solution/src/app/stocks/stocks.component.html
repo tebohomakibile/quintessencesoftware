@@ -1,10 +1,10 @@
 <table border="1" *ngIf="stocks$ | async as stocks">
     <tr>
-        <th>ID</th>
-        <th>STOCK</th>
-        <th>INDUSTRY</th>
-        <th>SECTOR</th>
-        <th>CURENCY CODE</th>
+        <th [appSort]="stocks" data-order="desc" data-name="id">ID</th>
+        <th [appSort]="stocks" data-order="desc" data-name="stock">STOCK</th>
+        <th [appSort]="stocks" data-order="desc" data-name="industry">INDUSTRY</th>
+        <th [appSort]="stocks" data-order="desc" data-name="sector">SECTOR</th>
+        <th [appSort]="stocks" data-order="desc" data-name="currency_code">CURENCY CODE</th>
     </tr>
     <tr>
         <input type="text" [(ngModel)]="searchValue" placeholder="Serach any fields" />
